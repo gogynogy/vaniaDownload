@@ -21,9 +21,10 @@ def download_staf(): #сама функция даунлоуда
                  readable_hash = hashlib.sha256(bytes).hexdigest()#получает хеш 256
                  if folders[2] == readable_hash:#сравнивает хеш нового файла с историей
                      print("актуальный файл уже скачан")
-                     os.remove(f'reclebin/{folders[0]}')
+                     os.remove(f'reclebin/{folders[0]}')#удаляет загруженный файл, если он соответствует файлу в базе
                  else:
                      folders[0] = wget.filename_from_url(folders[1])  # обновление имени загруженного файла
+                     folders[2] = readable_hash #обновление хеша
                      pass
 
 
