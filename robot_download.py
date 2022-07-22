@@ -3,7 +3,7 @@ import os
 import wget
 
 
-def download_staf(folder, path):  # сама функция даунлоуда
+def download_staf(folder, path):  # функция даунлоуда
     with open(folder) as file:  # открывает файл и читает его списком
         lines = [line.rstrip('\n') for line in file]
         for line in lines:
@@ -12,11 +12,12 @@ def download_staf(folder, path):  # сама функция даунлоуда
                 wget.download(folders[1], path)  # загрузка файла
                 print(f"загрузка завершена {folders[0]}")
                 with open(f"reclebin/{folders[0]}", "rb") as f:
-                     bytesF = f.read()  # читает файл в байтах
-                     readable_hash = hashlib.sha256(bytesF).hexdigest()  # получает хеш 256
+                     bytesFile = f.read()  # читает файл в байтах
+                     readable_hash = hashlib.sha256(bytesFile).hexdigest()  # получает хеш 256
                      if folders[2] == readable_hash:  # сравнивает хеш нового файла с историей
                          print("актуальный файл уже скачан")
-                         os.remove(f'reclebin/{folders[0]}')  # удаляет загруженный файл, если он соответствует файлу в базе
+                         os.remove(f'reclebin/{folders[0]}')
+                         # удаляет загруженный файл, если он соответствует файлу в базе
                      else:
                          print(f"по ссылке {folders[1]} найден новый файл {wget.filename_from_url(folders[1])}")
                          folders[0] = wget.filename_from_url(folders[1])  # обновление имени загруженного файла
