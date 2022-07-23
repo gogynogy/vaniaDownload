@@ -31,7 +31,7 @@ if not os.path.exists("reclebin"):
 
 folder = os.path.abspath(os.path.join("list_url.txt"))  # путь к базе
 path = os.path.abspath(os.path.join("reclebin"))
-with ThreadPoolExecutor(max_workers=4) as executor:
+# with ThreadPoolExecutor(max_workers=4) as executor:
 with open(folder) as f:
     templates = yaml.safe_load(f)  # получает словарь списков из файла list_url.txt
     for file in templates:  # идем по спискам в словаре
