@@ -10,8 +10,8 @@ def download_staf(file, path):
     try:
         wget.download(link, path)
         fileName = wget.filename_from_url(link)
-        with open(f"reclebin/{fileName}", "rb") as f:
-            bytesFile = f.read()
+        with open(f"reclebin/{fileName}", "rb") as file:
+            bytesFile = file.read()
             readable_hash = hashlib.sha256(bytesFile).hexdigest()
             if sha256summ == readable_hash:
                 os.remove(f'reclebin/{fileName}')
