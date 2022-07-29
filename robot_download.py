@@ -15,10 +15,6 @@ def download_staf(file, path):
             readable_hash = hashlib.sha256(bytesFile).hexdigest()
             if sha256summ == readable_hash:
                 os.remove(f'reclebin/{fileName}')
-            else:
-                pass
-    except:
-        pass
 
 
 if not os.path.exists("fresh soft"):
