@@ -10,18 +10,20 @@ def download_staf(file, path):
     try:
         wget.download(link, path)
         fileName = wget.filename_from_url(link)
-        with open(f"reclebin/{fileName}", "rb") as file:
+        with open(f"{path}/{fileName}", "rb") as file:
             bytesFile = file.read()
             readable_hash = hashlib.sha256(bytesFile).hexdigest()
             if sha256summ == readable_hash:
-                os.remove(f'reclebin/{fileName}')
+                os.remove(f'{path}/{fileName}')
+    except:
+        pass
 
 
-if not os.path.exists("fresh soft"):
-    os.mkdir("fresh soft")
+if not os.path.exists("fresh_soft"):
+    os.mkdir("fresh_soft")
 
 folder = os.path.abspath(os.path.join("list_url.txt"))
-path = os.path.abspath(os.path.join("fresh soft"))
+path = os.path.abspath(os.path.join("fresh_soft"))
 
 with open(folder) as f:
     templates = yaml.safe_load(f)
