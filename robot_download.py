@@ -5,9 +5,9 @@ import wget
 import threading
 import boto3
 
+s3 = boto3.resource("s3")
 folder = os.path.abspath(os.path.join("list_url.txt"))
 path = os.path.abspath(os.path.join("fresh_soft"))
-s3 = boto3.resource("s3")
 
 def download_staf(file, path):
     name, link, sha256summ = file["name"], file["link"], file["sha256summ"]
