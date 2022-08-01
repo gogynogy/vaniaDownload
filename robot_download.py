@@ -3,6 +3,8 @@ import yaml #pip install pyyaml
 import os
 import wget
 import threading
+import boto3
+
 
 
 def download_staf(file, path):
@@ -15,6 +17,8 @@ def download_staf(file, path):
             readable_hash = hashlib.sha256(bytesFile).hexdigest()
             if sha256summ != readable_hash:
                 os.remove(f'{path}/{fileName}')
+                if name not in s3.buckets.all:
+                    s3.download_file(name)
     except:
         pass
 
@@ -24,6 +28,7 @@ if not os.path.exists("fresh_soft"):
 
 folder = os.path.abspath(os.path.join("list_url.txt"))
 path = os.path.abspath(os.path.join("fresh_soft"))
+s3 = boto3.resource('s3')
 
 with open(folder) as f:
     templates = yaml.safe_load(f)
