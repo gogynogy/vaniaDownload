@@ -5,7 +5,9 @@ import wget
 import threading
 import boto3
 
-
+folder = os.path.abspath(os.path.join("list_url.txt"))
+path = os.path.abspath(os.path.join("fresh_soft"))
+s3 = boto3.resource("s3")
 
 def download_staf(file, path):
     name, link, sha256summ = file["name"], file["link"], file["sha256summ"]
@@ -26,10 +28,6 @@ def download_staf(file, path):
 
 if not os.path.exists("fresh_soft"):
     os.mkdir("fresh_soft")
-
-folder = os.path.abspath(os.path.join("list_url.txt"))
-path = os.path.abspath(os.path.join("fresh_soft"))
-s3 = boto3.resource("s3")
 
 with open(folder) as f:
     templates = yaml.safe_load(f)
