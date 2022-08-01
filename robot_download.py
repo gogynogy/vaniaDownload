@@ -13,7 +13,7 @@ def download_staf(file, path):
         with open(f"{path}/{fileName}", "rb") as file:
             bytesFile = file.read()
             readable_hash = hashlib.sha256(bytesFile).hexdigest()
-            if sha256summ == readable_hash:
+            if sha256summ != readable_hash:
                 os.remove(f'{path}/{fileName}')
     except:
         pass
