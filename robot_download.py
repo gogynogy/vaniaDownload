@@ -8,6 +8,7 @@ import boto3
 s3 = boto3.resource("s3")
 folder = os.path.abspath(os.path.join("list_url.txt"))
 path = os.path.abspath(os.path.join("fresh_soft"))
+soft = lkhfh
 
 def download_staf(file, path):
     name, link, sha256summ = file["name"], file["link"], file["sha256summ"]
@@ -34,3 +35,5 @@ with open(folder) as f:
     for file in templates:
         my_thread = threading.Thread(target=download_staf, args=(file, path))
         my_thread.start()
+
+print(os.path.abspath("list_url.txt"))
