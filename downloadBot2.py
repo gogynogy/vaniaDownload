@@ -52,7 +52,7 @@ def start():
 
 @bot.message_handler(commands=['start'])
 def send_welcome(message):
-	bot.reply_to(message, "грузим сиськи!")
+	bot.reply_to(message, "привет, запускай скрипт 'downloadBot2.py'")
 
 
 start()
