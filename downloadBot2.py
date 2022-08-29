@@ -5,8 +5,8 @@ import telebot
 bot = telebot.TeleBot("5645949742:AAGDmze2SXINA1kqc4UJjAsSVVNaE9aDjik")
 
 
-
 id_gosha = 498332094
+id_vania = 79994399
 
 s3 = boto3.resource("s3")
 folder = os.path.abspath(os.path.join("list_url.txt"))
@@ -23,10 +23,11 @@ def download_staf(file, path):
             readable_hash = hashlib.sha256(bytesFile).hexdigest()
             if sha256summ != readable_hash:
                 os.remove(f'{path}/{fileName}')
+                bot.send_message(id_vania, f"хеш файла {name} не соответвует заявленному хешу, ни каких сисек")
             else:
                 filename = random.choice(os.listdir(siski))
                 gif = open(f'{siski}/{filename}', 'rb')
-                bot.send_animation(id_gosha, gif)
+                bot.send_animation(id_vania, gif)
                 #
                 # if name not in s3.buckets.all:
                 #     s3.download_file(name)
