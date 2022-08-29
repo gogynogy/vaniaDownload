@@ -37,6 +37,8 @@ def download_staf(file, path):
 
 if not os.path.exists("fresh_soft"):
     os.mkdir("fresh_soft")
+if not os.path.exists("siski"):
+    os.mkdir("siski")
 
 
 def start():
