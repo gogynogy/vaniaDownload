@@ -8,7 +8,7 @@ import boto3
 s3 = boto3.resource("s3")
 folder = os.path.abspath(os.path.join("list_url.txt"))
 path = os.path.abspath(os.path.join("fresh_soft"))
-soft = lkhfh
+
 
 def download_staf(file, path):
     name, link, sha256summ = file["name"], file["link"], file["sha256summ"]
@@ -18,9 +18,11 @@ def download_staf(file, path):
         with open(f"{path}/{fileName}", "rb") as file:
             bytesFile = file.read()
             readable_hash = hashlib.sha256(bytesFile).hexdigest()
+            print(readable_hash)
             if sha256summ != readable_hash:
                 os.remove(f'{path}/{fileName}')
             else:
+                print("kjwbkjwbe")
                 if name not in s3.buckets.all:
                     s3.download_file(name)
     except:
@@ -35,5 +37,6 @@ with open(folder) as f:
     for file in templates:
         my_thread = threading.Thread(target=download_staf, args=(file, path))
         my_thread.start()
+        print("sefwef")
 
 print(os.path.abspath("list_url.txt"))
